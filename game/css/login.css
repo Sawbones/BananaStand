@@ -1,0 +1,53 @@
+.center
+{
+	margin-left:auto;
+	margin-right:auto;
+	width:240px;
+}
+input[type=text]
+{
+	padding:5px 0px 5px 0px;
+	border:1px solid #444;
+
+	width:100%;
+
+	border-radius:4px;
+}
+table 
+{
+	width:100%;
+}
+p 
+{
+	margin:0px;
+	padding:0px;
+	display:inline-block;
+}
+td > p 
+{
+	display:table-row;
+	color:#444;
+	font-family:Verdana;
+}
+.signin
+{
+	display:inline-block;
+	padding-top:10px;
+	padding-bottom:10px;
+	width:100%;
+	background-color:#EAB06E;
+	color:#FFF;
+	font-size:16pt;
+	border:none;
+	box-shadow:inset 0px 3px 0px #F5C972;
+	border-radius: 5px;
+}
+.error-output
+{
+	display:block;
+	font-family:Verdana;
+	color:red;
+	font-size:11pt;
+	height:20px;
+	text-align: center;
+}

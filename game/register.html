@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Login
+	</title>
+	<link rel="stylesheet" href="css/login.css" />
+	<script src="js/jquery203.min.js"></script>
+	<script src="js/socket.io.min.js"></script>
+</head>
+<body>
+	<p>Please Enter a username and password to register</p>
+	<div style="width:100%">
+		<p class="error-output">
+
+		</p>
+	</div>
+	<div class="center">
+		<table>
+			<tr>
+				<td>
+					<p>Username</p>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="text" name="username" id="username" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p>Password</p>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="text" name="password" id="password" />
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<button class="signin" id="signin">Sign In</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+<script>
+$(document).ready(function(){
+	var socket	= io.connect('http://127.0.0.1:8080');
+	socket.on('user_register', user_register);
+
+	var submitButton = $("#signin");
+	var error = $(".error-output");
+
+	var user_data = {};
+
+	submitButton.click(function(){
+		user_data = { 
+			username : $("#username").val(), 
+			password : $("#password").val()
+		};
+
+		if(user_data.username == '')
+		{
+			showError('You need to enter your username');
+			return;
+		}
+		else if(user_data.password == '')
+		{			
+			showError('You need to enter your password');
+			return;
+		}
+		else
+		{
+			socket.emit('user_register', user_data);
+		}
+	});
+
+	function user_register(data)
+	{
+		if(!data.success)
+		{
+			user_data.x = 0;
+			user_data.y = 0;
+			socket.emit('user_register', user_data);
+			showError(data.output);
+		}
+		else
+		{
+			sessionStorage.username = user_data.username;
+			sessionStorage.password = user_data.password;
+			window.location = 'index.html';
+		}
+	}
+
+	function showError(value)
+	{
+		var error = $(".error-output");
+
+		error.text(value);
+		error.show();
+	}
+
+	function hideError()
+	{
+		var error = $(".error-output");
+		error.text('');
+		error.hide();
+	}
+});
+</script>
+</body>
+</html>
