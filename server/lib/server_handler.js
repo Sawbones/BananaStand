@@ -49,18 +49,6 @@ function ServerHandler(socket)
 		socket.emit('update', logged_in_users);
 	}, 16);
 
-	/*
-	setInterval(function(){
-		for(var user_id in logged_in_users)
-		{
-			var x = logged_in_users[user_id].x;
-			var y = logged_in_users[user_id].y;
-			
-			console.log(logged_in_users[user_id].username + " is located at (" + x + ", " + y + ")");
-		}
-	}, 800);
-*/
-
 	socket.on('login', this.login);
 	socket.on('update', this.update);
 }
