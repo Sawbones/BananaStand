@@ -26,12 +26,17 @@ function Game()
 	};
 	var last_direction = player_object.animation;
 
+	var world = new World('resources/maps/test_world');
+
 	var velocity = 1.5/10;
+
+	var clickable_objects = [];
 
 	socket.on('update', server_update);
 
 	this.update = function(delta)
 	{
+		world.update(delta);
 		player.update(delta);
 		if(direction.up)
 		{
@@ -72,11 +77,6 @@ function Game()
 					break;
 			}
 		}
-
-		/*for(var user_id in other_players)
-		{
-			other_players[user_id].update(delta);
-		}*/
 		player.params.animation = player.sprite.selected_animation;
 		socket.emit('update', player.params);
 	}
@@ -85,6 +85,8 @@ function Game()
 	{
 		c.fillStyle = '#333';
 		c.fillRect(0, 0, canvas.width, canvas.height);
+
+		world.draw(c, delta);
 
 		for(var user_id in other_players)
 		{
@@ -174,6 +176,17 @@ function Game()
 		}
 	}
 
+	function mousedown(e)
+	{
+		console.log(e);
+
+		for(var i = 0; i < click_manager.objects.length; i++)
+		{
+			click_manager[i].events;
+		}
+	}
+
 	$(document).keydown(keydown);
 	$(document).keyup(keyup);
+	$(document).click(mousedown);
 }

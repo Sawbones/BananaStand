@@ -1,0 +1,12 @@
+{
+	"filename" : "browser_quest",
+	"tileWidth" : 32,
+	"tileHeight" : 32,
+	"tiles" : [
+		[0, 1, 5, 7, 2],
+		[],
+		[],
+		[],
+		[]
+	]
+}

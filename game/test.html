@@ -1,0 +1,39 @@
+<DOCTYPE html>
+<html>
+<head>
+	<title>Test</title>
+</head>
+<body>
+<script src="js/underscore-min.js"></script>
+<script>
+function GameObject(x, y)
+{
+	this.x = x;
+	this.y = y;
+}
+
+GameObject.prototype.location = function()
+{
+	console.log("Current X: " + this.x);
+	console.log("Current Y: " + this.y);
+}
+
+function House(x, y)
+{
+	this.x = x;
+	this.y = y;
+}
+
+House.prototype.houseColor = function()
+{
+	console.log("You can't figure out where the house is");
+}
+
+var FullHouse = _.extend(House, GameObject);
+
+
+var house = new FullHouse(20, 20);
+console.log(house);
+</script>
+</body>
+</html>
