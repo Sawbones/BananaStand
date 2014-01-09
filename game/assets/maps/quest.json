@@ -1,0 +1,15 @@
+{
+	"name" : "quest",
+	"tileWidth" : 64,
+	"tileHeight" : 64,
+	"tileDrawWidth" : 64,
+	"tileDrawHeight" : 64,
+	"tiles" : [
+		[[14, 8], [14, 8], [14, 8]],
+		[[14, 8], [14, 8], [14, 8]],
+		[[14, 8], [14, 8], [14, 8]]
+	],
+	"objects" : [
+		{ "x" : 10, "y" : 10, "image" : "quest", "name" : "house", "animation" : "default" }
+	]
+}

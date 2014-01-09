@@ -1,7 +1,6 @@
 var db 	= require('./database.js');
 var m 	= require('./message.js');
 var _ 	= require('underscore');
-var logged_in_users = {};
 
 function ServerHandler(socket)
 {
@@ -10,47 +9,21 @@ function ServerHandler(socket)
 		var username = user_data.username;
 		var password = user_data.password;
 
-		var find = {
-			username : username,
-			password : password
+		var where = {
+			username : user_data.username,
+			password : user_data.password
 		};
-		db.User.find(find, user_check);
 
-		function user_check(err, user)
-		{
-			if(user.length > 0)
-			{
-				logged_in_users[user[0].id] = user[0];
+		db.User.find(where)
+		.complete(function(err, user){
+			console.log(user.values);
 
-				socket.emit('login', m(true, user[0]) );
-			}
-			else
-			{
-				socket.emit('login', m(false, 'User not recongnized'));
-			}
-		}
+			player_entities[user.username] = user.values;
+		});
 	}
-
-	this.update = function(user_data)
-	{
-		var user = logged_in_users[user_data.id];
-
-		if(typeof user != 'undefined')
-		{
-			user.x = user_data.x;
-			user.y = user_data.y;
-			user.animation = user_data.animation;
-
-			logged_in_users[user_data.id] = user;
-		}
-	}
-
-	setInterval(function(){
-		socket.emit('update', logged_in_users);
-	}, 16);
 
 	socket.on('login', this.login);
-	socket.on('update', this.update);
+	//socket.on('update', this.update);
 }
 
 module.exports = ServerHandler;

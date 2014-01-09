@@ -1,0 +1,25 @@
+{
+	"draw" : {
+		"xOffset" : 0,
+		"yOffset" : 0,
+		"width" : 305,
+		"height" : 366
+	},
+	"bounds" : {
+		"xOffset" : 0,
+		"yOffset" : 300,
+		"width" : 305,
+		"height" : 66
+	},
+	"anchor" : {
+		"x" : 152,
+		"y" : 350
+	},
+	"scale" : 0.6,
+	"duration" : 100,
+	"animations" : {
+		"default" : [
+			[0, 0]
+		]
+	}
+}

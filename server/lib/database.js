@@ -1,21 +1,35 @@
-var orm = require('orm');
-var db = orm.connect("mysql://root@localhost/game");
+var Sequelize = require('sequelize');
+var seq = new Sequelize('game', 'root', '', {
+	dialect : 'mysql',
+	port : 3306
+});
 
-db.on('connect', function(err){
-	if(err) {
-		throw err;
+seq.authenticate().complete(auth_callback)
+
+function auth_callback(err)
+{
+	if(err)
+	{
+		console.log('Unable to connect');
 	}
+	else
+	{
+		console.log('Connected to mysql db');
+	}
+}
+
+var User = seq.define('user', {
+	username : Sequelize.STRING,
+	password : Sequelize.STRING,
+	x : Sequelize.INTEGER,
+	y : Sequelize.INTEGER,
+	world : Sequelize.STRING,
+	race : Sequelize.STRING
 });
 
-var User = db.define('user', {
-	username : String,
-	password : String,
-	world : String,
-	x : Number,
-	y : Number,
-	sprite : String,
-	animation : String
+var World = seq.define('world', {
+	name : Sequelize.STRING,
+	max : Sequelize.INTEGER
 });
 
-module.exports.db = db;
 module.exports.User = User;

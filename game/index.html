@@ -3,38 +3,23 @@
 	<head>
 		<title></title>
 
-		<script src="js/jquery203.min.js"></script>
-		<script src="js/socket.io.min.js"></script>
-		<script src="js/game_object.js"></script>
-		<script src="js/sprite.js"></script>
-		<script src="js/world.js"></script>
-		<script src="js/game.js"></script>
-
-		<link rel="stylesheet" href="css/style.css" />
+		<script src="lib/jquery203.min.js"></script>
+		<script src="lib/socket.io.min.js"></script>
+		<script src="lib/underscore-min.js"></script>
+		<script src="src/world.js"></script>
+		<script src="src/entity.js"></script>
+		<script src="src/player.js"></script>
+		<script src="src/core.js"></script>
+		<script src="src/game.js"></script>
+		<style>
+			body
+			{
+				margin:0px; padding:0px;
+				overflow:hidden;
+			}
+		</style>
 	</head>
 	<body>
-		<canvas id="game" width="480" height="360"></canvas>
-<script>
-var socket	= io.connect('http://localhost:8080');
-$(document).ready(function(){
-
-	document.title = sessionStorage.username
-
-	var game = new Game();
-
-	var step = 16;
-	var delta = step;
-	var time = new Date().getTime();
-	var oldTime = time;
-	
-	setInterval(function(){
-		time = new Date().getTime();
-		delta = time - oldTime;
-		game.update(delta);
-		game.draw(delta);
-		oldTime = time;
-	}, step);
-});
-</script>
+		<canvas width="720" height="480" id="game"></canvas>
 	</body>
 </html>

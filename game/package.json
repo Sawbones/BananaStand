@@ -1,9 +1,9 @@
 {
 	"name" : "nw-demo",
-	"main" : "login.html",
+	"main" : "index.html",
 	"window" :
 	{
-		"width" : 480,
-		"height" : 360
+		"width" : 720,
+		"height" : 480
 	}
 }
